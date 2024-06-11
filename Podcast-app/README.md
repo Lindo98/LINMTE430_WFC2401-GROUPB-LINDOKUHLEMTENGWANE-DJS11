@@ -1,4 +1,4 @@
-PodSquad designed by Lindokuhle Mtengwane 🎵💿
+### PodSquad designed by Lindokuhle Mtengwane 🎵💿
 
 ## In this project, I have created a podcast app
 
