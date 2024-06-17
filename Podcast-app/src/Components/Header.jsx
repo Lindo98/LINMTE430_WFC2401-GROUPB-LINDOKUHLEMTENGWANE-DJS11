@@ -36,7 +36,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className="header flex p-4">
       <nav className="nav">
         <div className="logo">
           <img src="/logo.png" alt="My App Logo" />

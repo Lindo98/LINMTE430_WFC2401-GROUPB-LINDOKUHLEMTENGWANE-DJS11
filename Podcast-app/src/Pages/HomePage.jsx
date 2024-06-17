@@ -86,13 +86,13 @@ function HomePage() {
               <h3 className="font-semibold mt-4 text-s">{preview.title}</h3>{" "}
               {/* <p className="">
                 {" "}
-                Description: {truncateText(preview.description, 15)}
-              </p> */}
-              {/* <p className="">Genres: {preview.genres.join(", ")}</p>
-              <p className="">Seasons: {preview.seasons}</p>{" "}
+                Description: {preview.description.substring(0, 10)}
+              </p>
+              <p className="">Genres: {preview.genres.join(", ")}</p>
+              <p className="">Seasons: {preview.seasons}</p>{" "} */}
               <p className="update">
                 Last Updated: {new Date(preview.updated).toLocaleDateString()}
-              </p> */}
+              </p>
             </div>
           </div>
         ))}
