@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const [previews, setPreviews] = useState([]);
@@ -113,20 +114,15 @@ function HomePage() {
                   alt={preview.title}
                 />
                 <div className="overlay">
-                  <button className="play-button">
-                    <i className="fas fa-play"></i>
-                  </button>
+                  <button></button>
                 </div>
               </div>
-              <h3 className="font-semibold mt-4 text-s">{preview.title}</h3>
-              <p className="">
+              <h3 className="font-semibold mt-4 text-lg">{preview.title}</h3>
+              <p className="text-sm">
                 Genres:{" "}
                 {preview.genres
                   .map((genreId) => genreMapping[genreId])
                   .join(", ")}
-              </p>
-              <p className="update">
-                Last Updated: {new Date(preview.updated).toLocaleDateString()}
               </p>
             </div>
           </div>

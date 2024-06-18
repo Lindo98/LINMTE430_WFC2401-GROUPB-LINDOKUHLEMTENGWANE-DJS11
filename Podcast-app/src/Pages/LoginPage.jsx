@@ -1,5 +1,6 @@
 // src/Login.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -39,9 +40,11 @@ const Login = () => {
             required
           />
         </div>
-        <button className="font-semibold" type="submit">
-          Login
-        </button>
+        <Link to="/home">
+          <button className="login-btn" type="submit">
+            Login
+          </button>
+        </Link>
       </form>
     </div>
   );
