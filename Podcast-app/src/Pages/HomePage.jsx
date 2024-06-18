@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 function HomePage() {
   const [previews, setPreviews] = useState([]);
   const [filterOption, setFilterOption] = useState("none");
+  const [selectedGenre, setSelectedGenre] = useState("all");
 
   useEffect(() => {
     fetch("https://podcast-api.netlify.app")
@@ -13,7 +14,18 @@ function HomePage() {
       });
   }, []);
 
-  //sorting functions this is a utility function!import it!
+  const genreMapping = {
+    1: "Personal Growth",
+    2: "Investigative Journalism",
+    3: "History",
+    4: "Comedy",
+    5: "Entertainment",
+    6: "Business",
+    7: "Fiction",
+    8: "News",
+    9: "Kids and Family",
+  };
+
   const sortPreviews = (previews) => {
     switch (filterOption) {
       case "titleAsc":
@@ -33,44 +45,67 @@ function HomePage() {
     }
   };
 
-  // const truncateText = (text, wordLimit) => {
-  //   if (!text) return "";
-  //   const words = text.split(" ");
-  //   return words.length > wordLimit
-  //     ? words.slice(0, wordLimit).join(" ") + "..."
-  //     : text;
-  // };
+  const filterPreviewsByGenre = (previews) => {
+    if (selectedGenre === "all") {
+      return previews;
+    }
+    return previews.filter((preview) =>
+      preview.genres.includes(parseInt(selectedGenre))
+    );
+  };
 
-  // grid layout for home page
+  const sortedAndFilteredPreviews = filterPreviewsByGenre(
+    sortPreviews(previews)
+  );
+
   return (
     <main className="max-w-7xl mx-auto">
-      {/* {
-        <div className="flex justify-between items-center mb-4">
-          <div>
-            <label htmlFor="filterOption" className="mr-2 font-semibold">
-              Sort By:
-            </label>
-            <select
-              id="filterOption"
-              className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={filterOption}
-              onChange={(e) => setFilterOption(e.target.value)}
-            >
-              <option value="none">None</option>
-              <option value="titleAsc">Title A-Z</option>
-              <option value="titleDesc">Title Z-A</option>
-              <option value="dateAsc">Oldest First</option>
-              <option value="dateDesc">Newest First</option>
-            </select>
-          </div>
-          <button className="info-btn">Favorites</button>
+      <div className="flex justify-between items-center mb-4">
+        <div>
+          <label htmlFor="filterOption" className="mr-2 font-semibold">
+            Sort By:
+          </label>
+          <select
+            id="filterOption"
+            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={filterOption}
+            onChange={(e) => setFilterOption(e.target.value)}
+          >
+            <option value="none">None</option>
+            <option value="titleAsc">Title A-Z</option>
+            <option value="titleDesc">Title Z-A</option>
+            <option value="dateAsc">Oldest First</option>
+            <option value="dateDesc">Newest First</option>
+          </select>
         </div>
-      } */}
+        <div>
+          <label htmlFor="genreFilter" className="mr-2 font-semibold">
+            Genre:
+          </label>
+          <select
+            id="genreFilter"
+            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={selectedGenre}
+            onChange={(e) => setSelectedGenre(e.target.value)}
+          >
+            <option value="all">All</option>
+            {Object.entries(genreMapping).map(([id, name]) => (
+              <option key={id} value={id}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button className="info-btn">Favorites</button>
+      </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10 bg-white">
-        {sortPreviews(previews).map((preview) => (
+      <div
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10"
+        style={{ backgroundColor: "#f7f7f2" }}
+      >
+        {sortedAndFilteredPreviews.map((preview) => (
           <div key={preview.id} className="">
-            <div className=" bg-green m-4 p-4 shadow-xl">
+            <div className="bg-green m-4 p-4 shadow-xl">
               <div className="image-container">
                 <img
                   className="image"
@@ -83,13 +118,13 @@ function HomePage() {
                   </button>
                 </div>
               </div>
-              <h3 className="font-semibold mt-4 text-s">{preview.title}</h3>{" "}
-              {/* <p className="">
-                {" "}
-                Description: {preview.description.substring(0, 10)}
+              <h3 className="font-semibold mt-4 text-s">{preview.title}</h3>
+              <p className="">
+                Genres:{" "}
+                {preview.genres
+                  .map((genreId) => genreMapping[genreId])
+                  .join(", ")}
               </p>
-              <p className="">Genres: {preview.genres.join(", ")}</p>
-              <p className="">Seasons: {preview.seasons}</p>{" "} */}
               <p className="update">
                 Last Updated: {new Date(preview.updated).toLocaleDateString()}
               </p>
