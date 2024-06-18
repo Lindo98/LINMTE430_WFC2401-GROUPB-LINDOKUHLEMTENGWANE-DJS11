@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 function HomePage() {
   const [previews, setPreviews] = useState([]);
@@ -68,7 +67,7 @@ function HomePage() {
           </label>
           <select
             id="filterOption"
-            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none"
             value={filterOption}
             onChange={(e) => setFilterOption(e.target.value)}
           >
@@ -85,7 +84,7 @@ function HomePage() {
           </label>
           <select
             id="genreFilter"
-            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none"
             value={selectedGenre}
             onChange={(e) => setSelectedGenre(e.target.value)}
           >

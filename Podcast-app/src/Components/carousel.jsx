@@ -10,7 +10,10 @@ const Carousel = () => {
         const response = await fetch("https://podcast-api.netlify.app");
         const data = await response.json();
         console.log(data); // Add this line to debug the fetched data
-        setImages(data);
+
+        // Assuming the image URLs are in the 'shows' array within the response data
+        const imageUrls = data.shows.map((show) => show.image);
+        setImages(imageUrls);
       } catch (error) {
         console.error("Error fetching images:", error);
       }
@@ -42,25 +45,15 @@ const Carousel = () => {
   };
 
   return (
-    <div className="carousel">
-      <div className="carousel-inner">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`carousel-item ${
-              index === currentIndex ? "active" : ""
-            }`}
-          >
-            <img src={image.source} alt={image.title} />
-          </div>
-        ))}
-      </div>
-      <button className="carousel-control prev" onClick={goToPrevious}>
-        <span className="carousel-control-icon">&lt;</span>
-      </button>
-      <button className="carousel-control next" onClick={goToNext}>
-        <span className="carousel-control-icon">&gt;</span>
-      </button>
+    <div className="carousel-inner">
+      {images.map((imageUrl, index) => (
+        <div
+          key={index}
+          className={`carousel-item ${index === currentIndex ? "active" : ""}`}
+        >
+          <img src={imageUrl} alt={`Image ${index}`} />
+        </div>
+      ))}
     </div>
   );
 };

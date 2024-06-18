@@ -90,3 +90,40 @@ body {
 .login-btn:hover {
   background-color: #c5d86d;
 }
+
+/* music player styling */
+
+.music-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.player-controls button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.track-name {
+  font-weight: bold;
+}
+
+.artist-name {
+  font-size: 14px;
+}
