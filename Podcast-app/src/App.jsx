@@ -12,17 +12,16 @@ import Episodes from "./Pages/Episodes";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="home" element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path=":id" element={<Episodes />} />
-            <Route path="favorites" element={<Favorites />} />
-            <Route path="player" element={<MusicPlayer />} />
-          </Route>
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="home" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path=":id" element={<Seasons />} />
+          <Route path="episodes" element={<Episodes />} />
+          <Route path="favorites" element={<Favorites />} />
+          <Route path="player" element={<MusicPlayer />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
