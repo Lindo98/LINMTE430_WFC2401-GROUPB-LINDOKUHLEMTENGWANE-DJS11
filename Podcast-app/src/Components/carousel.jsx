@@ -5,21 +5,17 @@ const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await fetch("https://podcast-api.netlify.app");
-        const data = await response.json();
-        console.log(data); // Add this line to debug the fetched data
-
-        // Assuming the image URLs are in the 'shows' array within the response data
-        const imageUrls = data.shows.map((show) => show.image);
-        setImages(imageUrls);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    };
-
-    fetchImages();
+    fetch("https://podcast-api.netlify.app/shows")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.shows) {
+          const imageUrls = data.shows.map((show) => show.image);
+          setImages(imageUrls);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching the images:", error);
+      });
   }, []);
 
   useEffect(() => {
@@ -27,7 +23,7 @@ const Carousel = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 10);
+    }, 3000); // Change to a more appropriate interval time, e.g., 3000ms
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -45,15 +41,35 @@ const Carousel = () => {
   };
 
   return (
-    <div className="carousel-inner">
-      {images.map((imageUrl, index) => (
-        <div
-          key={index}
-          className={`carousel-item ${index === currentIndex ? "active" : ""}`}
-        >
-          <img src={imageUrl} alt={`Image ${index}`} />
-        </div>
-      ))}
+    <div className="max-w-7xl mx-auto mt-4 flex items-center relative">
+      <button
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded-r-md"
+        onClick={goToPrevious}
+      >
+        Prev
+      </button>
+      <div className="carousel-inner relative w-full h-64 overflow-hidden">
+        {images.map((imageUrl, index) => (
+          <div
+            key={index}
+            className={`carousel-item absolute w-full h-full transition-opacity duration-1000 ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <img
+              src={imageUrl}
+              alt={`Image ${index}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+      </div>
+      <button
+        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded-l-md"
+        onClick={goToNext}
+      >
+        Next
+      </button>
     </div>
   );
 };

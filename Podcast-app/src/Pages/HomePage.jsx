@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Carousel from "../Components/carousel";
 
 function HomePage() {
   const [previews, setPreviews] = useState([]);
@@ -60,14 +62,15 @@ function HomePage() {
 
   return (
     <main className="max-w-7xl mx-auto">
-      <div className="flex justify-between items-center mb-4">
+      <Carousel />
+      <div className="max-w-7xl mx-auto mt-4 flex m-6">
         <div>
-          <label htmlFor="filterOption" className="mr-2 font-semibold">
+          <label htmlFor="filterOption" className="mr-2 text-m font-semibold">
             Sort By:
           </label>
           <select
             id="filterOption"
-            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none"
+            className="px-2 py-1 text-m border border-gray-300 rounded-md focus:outline-none"
             value={filterOption}
             onChange={(e) => setFilterOption(e.target.value)}
           >
@@ -79,12 +82,15 @@ function HomePage() {
           </select>
         </div>
         <div>
-          <label htmlFor="genreFilter" className="mr-2 font-semibold">
+          <label
+            htmlFor="genreFilter"
+            className="genre mr-2 text-m font-semibold"
+          >
             Genre:
           </label>
           <select
             id="genreFilter"
-            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none"
+            className="px-2 py-1 text-m border rounded-md focus:outline-none"
             value={selectedGenre}
             onChange={(e) => setSelectedGenre(e.target.value)}
           >
@@ -96,26 +102,28 @@ function HomePage() {
             ))}
           </select>
         </div>
-        <button className="info-btn">Favorites</button>
       </div>
 
       <div
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 rounded-lg"
         style={{ backgroundColor: "#f7f7f2" }}
       >
         {sortedAndFilteredPreviews.map((preview) => (
           <div key={preview.id} className="">
-            <div className="bg-green m-4 p-4 shadow-xl">
-              <div className="image-container">
-                <img
-                  className="image"
-                  src={preview.image}
-                  alt={preview.title}
-                />
-                <div className="overlay">
-                  <button></button>
-                </div>
-              </div>
+            <div className="bg-green m-4 p-4 shadow-2xl rounded-lg">
+              <Link to={`${preview.id}`}>
+                {" "}
+                <div className="image-container">
+                  <img
+                    className="image"
+                    src={preview.image}
+                    alt={preview.title}
+                  />
+                  <div className="overlay">
+                    <button></button>
+                  </div>
+                </div>{" "}
+              </Link>
               <h3 className="font-semibold mt-4 text-lg">{preview.title}</h3>
               <p className="text-sm">
                 Genres:{" "}
