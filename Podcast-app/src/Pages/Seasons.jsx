@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import SeasonsComponent from "./SeasonsComponent";
 
 const Seasons = () => {
@@ -37,7 +37,7 @@ const Seasons = () => {
 
   return (
     <div className="max-w-7xl mx-auto mt-4 mb-20 items-center rounded-lg">
-      <div className="max-w-7xl mx-auto mb-10 h-80">
+      <div className="max-w-7xl mx-auto mb-10 h-80 ">
         <img
           src={seasons.image}
           alt={seasons.title}
@@ -54,9 +54,13 @@ const Seasons = () => {
           </span>
         ))}
       </p>
+      <h2 className="text-2xl font-bold mb-4">Seasons</h2>
 
-      <h2>Seasons</h2>
       <SeasonsComponent seasons={seasons.seasons} />
+
+      <div className="max-w-7xl mx-auto grid grid-cols-2">
+        <Outlet />
+      </div>
     </div>
   );
 };

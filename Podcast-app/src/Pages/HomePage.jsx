@@ -62,11 +62,10 @@ function HomePage() {
 
   return (
     <main className="max-w-7xl mx-auto">
-      <Carousel />
       <div className="max-w-7xl mx-auto mt-4 flex m-6">
         <div>
           <label htmlFor="filterOption" className="mr-2 text-m font-semibold">
-            Sort By:
+            Filter:
           </label>
           <select
             id="filterOption"
@@ -103,14 +102,14 @@ function HomePage() {
           </select>
         </div>
       </div>
-
+      <Carousel />
       <div
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 rounded-lg"
         style={{ backgroundColor: "#f7f7f2" }}
       >
         {sortedAndFilteredPreviews.map((preview) => (
           <div key={preview.id} className="">
-            <div className="bg-green m-4 p-4 shadow-2xl rounded-lg">
+            <div className="m-4 p-4 shadow-2xl rounded-lg">
               <Link to={`${preview.id}`}>
                 {" "}
                 <div className="image-container">
@@ -125,11 +124,14 @@ function HomePage() {
                 </div>{" "}
               </Link>
               <h3 className="font-semibold mt-4 text-lg">{preview.title}</h3>
-              <p className="text-sm">
+              <p className="text-sm pt-1">
                 Genres:{" "}
                 {preview.genres
                   .map((genreId) => genreMapping[genreId])
                   .join(", ")}
+              </p>
+              <p className="text-sm pt-1">
+                Updated: {new Date(preview.updated).toLocaleDateString()}
               </p>
             </div>
           </div>

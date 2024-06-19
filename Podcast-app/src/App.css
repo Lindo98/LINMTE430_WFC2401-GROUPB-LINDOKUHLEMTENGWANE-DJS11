@@ -172,3 +172,41 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f2;
+  padding: 4px;
+  border-radius: 4px;
+  width: 30%;
+}
+
+.episode-description {
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.episodes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+  gap: 10px;
+}
+
+.episode-item {
+  background-color: #f7f7f2;
+  padding: 8px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.episode-item h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+}
+
+.episode-item p {
+  margin: 0;
+  font-size: 1rem;
+}

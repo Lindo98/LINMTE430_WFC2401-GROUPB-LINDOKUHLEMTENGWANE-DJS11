@@ -1,15 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Favorites = () => {
+const FavoritesComponent = ({ favorites }) => {
   return (
-    <div>
-      <h1>Favorites</h1>
-      <Link to="/home">
-        <button>Back</button>
-      </Link>
+    <div className="favorites mt-4">
+      <h2 className="text-lg font-semibold mb-2">Favorites</h2>
+      <ul>
+        {favorites.map((favorite, index) => (
+          <li key={index}>
+            <span>{favorite.title}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default Favorites;
+FavoritesComponent.propTypes = {
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      audioUrl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+export default FavoritesComponent;
