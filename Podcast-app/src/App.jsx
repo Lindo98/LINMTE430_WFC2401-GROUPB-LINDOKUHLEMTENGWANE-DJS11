@@ -19,10 +19,9 @@ const App = () => {
           <Route path=":id" element={<Seasons />}>
             <Route path="episodes" element={<Episodes />} />
           </Route>
-
-          <Route path="favorites" element={<Favorites />} />
           <Route path="player" element={<MusicPlayer />} />
         </Route>
+        <Route path="favorites" element={<Favorites />} />
       </Routes>
     </BrowserRouter>
   );

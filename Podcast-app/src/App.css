@@ -188,7 +188,6 @@ body {
   margin-top: 2px;
 }
 
-.episodes-grid,
 .favorites-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */

@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ favorites }) => {
+const Header = () => {
+  const [favorites, setFavorites] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(storedFavorites);
+  }, []);
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
     if (e.target.value === "") {
-      setSearchResults([]); // Clear search results if search query is empty
+      setSearchResults([]);
     }
   };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent form submission and page reload
+    e.preventDefault();
     const filteredResults = favorites.filter((item) => {
-      const itemName = item.name.toLowerCase();
+      const itemName = item.title.toLowerCase();
       const query = searchQuery.toLowerCase();
       return itemName.includes(query);
     });
@@ -30,21 +36,21 @@ const Header = ({ favorites }) => {
 
   return (
     <header
-      className="max-w-7xl mx-auto sm:m-4 mt-4 mb-10 justify-between flex items-center rounded-lg"
+      className="max-w-7xl mx-auto sm:m-4 mt-8 mb-10 justify-between flex items-center rounded-lg"
       style={{ backgroundColor: "#f7f7f2" }}
     >
       <div className="logo">
-        <Link to=".">
+        <Link to="/home">
           <img src="./src/images/logo.png" alt="logo" className="logo" />
         </Link>
       </div>
       <div>
-        <Link to={{ pathname: "/favorites", state: { favorites } }}>
+        <Link to="/favorites">
           <button
             className="favorites-btn px-2 py-1 text-m border rounded-md"
             style={{ backgroundColor: "#f7f7f2" }}
           >
-            Favorites
+            Favorites ({favorites.length})
           </button>
         </Link>
       </div>
@@ -69,7 +75,7 @@ const Header = ({ favorites }) => {
         <div className="search-results">
           <ul>
             {searchResults.map((result, index) => (
-              <li key={index}>{result.name}</li>
+              <li key={index}>{result.title}</li>
             ))}
           </ul>
         </div>
