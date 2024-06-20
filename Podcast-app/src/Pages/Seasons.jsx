@@ -28,7 +28,7 @@ const Seasons = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center text-6xl font-bold">Loading...</div>;
   }
 
   if (error) {

@@ -1,29 +1,38 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 
-const FavoritesComponent = ({ favorites }) => {
+function Favorites() {
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
-    <div className="favorites mt-4">
-      <h2 className="text-lg font-semibold mb-2">Favorites</h2>
+    <div className="favorites-list">
+      <h3 className="text-xl font-bold mb-2 mt-10">Favorites</h3>
       <ul>
-        {favorites.map((favorite, index) => (
+        {favorites.map((favEpisode, index) => (
           <li key={index}>
-            <span>{favorite.title}</span>
+            {favEpisode.title}
+            <img
+              src={favEpisode.image}
+              alt={favEpisode.title}
+              className="w-10 h-10 object-cover"
+            />
+            description: {favEpisode.description}
+            <audio src="favEpisode.audioUrl"></audio>
           </li>
         ))}
       </ul>
     </div>
   );
-};
+}
 
-FavoritesComponent.propTypes = {
-  favorites: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      audioUrl: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
-
-export default FavoritesComponent;
+export default Favorites;

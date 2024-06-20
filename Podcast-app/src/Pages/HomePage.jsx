@@ -61,8 +61,9 @@ function HomePage() {
   );
 
   return (
-    <main className="max-w-7xl mx-auto">
-      <div className="max-w-7xl mx-auto mt-4 flex m-6">
+    <main className="max-w-7xl mx-auto ">
+      <Carousel />
+      <div className="max-w-7xl mx-auto mt-20 flex m-6">
         <div>
           <label htmlFor="filterOption" className="mr-2 text-m font-semibold">
             Filter:
@@ -102,7 +103,6 @@ function HomePage() {
           </select>
         </div>
       </div>
-      <Carousel />
       <div
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-2 rounded-lg"
         style={{ backgroundColor: "#f7f7f2" }}

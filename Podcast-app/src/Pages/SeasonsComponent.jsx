@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Episodes from "./Episodes"; // Import the EpisodesComponent
 
-const SeasonsComponent = ({ seasons }) => {
+const Seasons = ({ seasons }) => {
   const [selectedSeason, setSelectedSeason] = useState("");
 
   const handleSeasonChange = (event) => {
@@ -37,7 +37,7 @@ const SeasonsComponent = ({ seasons }) => {
   );
 };
 
-SeasonsComponent.propTypes = {
+Seasons.propTypes = {
   seasons: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -51,4 +51,4 @@ SeasonsComponent.propTypes = {
   ).isRequired,
 };
 
-export default SeasonsComponent;
+export default Seasons;

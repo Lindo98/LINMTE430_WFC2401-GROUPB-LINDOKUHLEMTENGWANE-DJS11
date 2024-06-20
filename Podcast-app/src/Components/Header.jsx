@@ -1,22 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ favorites }) => {
   return (
     <header
-      className="max-w-7xl mx-auto mt-4 mb-20 justify-between flex items-center rounded-lg"
+      className="max-w-7xl mx-auto mt-4 mb-10 justify-between flex items-center rounded-lg"
       style={{ backgroundColor: "#f7f7f2" }}
     >
       <div className="logo">
         <Link to=".">
           <img src="./src/images/logo.png" alt="logo" className="logo" />
         </Link>
-      </div>{" "}
+      </div>
       <div>
-        <Link to="/favorites">
-          {" "}
+        <Link
+          to={{
+            pathname: "/favorites",
+            state: { favorites },
+          }}
+        >
           <button
-            className="favorites-btn px-2 py-1 text-m border rounded-md "
+            className="favorites-btn px-2 py-1 text-m border rounded-md"
             style={{ backgroundColor: "#f7f7f2" }}
           >
             Favorites
