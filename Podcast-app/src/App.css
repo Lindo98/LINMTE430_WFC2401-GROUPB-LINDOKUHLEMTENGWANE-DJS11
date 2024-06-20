@@ -197,17 +197,16 @@ body {
 
 .episode-item {
   background-color: #f7f7f2;
-  padding: 8px;
   border-radius: 4px;
   text-align: left;
 }
 
-.episode-item h3 {
+h3 {
   margin: 0 0 8px 0;
   font-size: 1.25rem;
 }
 
-.episode-item p {
+p {
   margin: 0;
   font-size: 1rem;
 }

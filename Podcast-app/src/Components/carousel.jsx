@@ -41,17 +41,26 @@ const Carousel = () => {
   };
 
   return (
-    <Slider {...settings}>
-      {images.map((image, index) => (
-        <div key={index} className="px-2">
-          <img
-            src={image}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-auto"
-          />
-        </div>
-      ))}
-    </Slider>
+    <div
+      className="max-w-7xl mx-auto rounded-lg"
+      style={{ backgroundColor: "#f7f7f2" }}
+    >
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className="max-w-7xl mx-auto px-2 "
+            style={{ backgroundColor: "#f7f7f2" }}
+          >
+            <img
+              src={image}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-auto py-2"
+            />
+          </div>
+        ))}
+      </Slider>
+    </div>
   );
 };
 

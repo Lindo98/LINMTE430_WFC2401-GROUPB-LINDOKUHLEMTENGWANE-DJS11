@@ -28,7 +28,11 @@ const Seasons = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center text-6xl font-bold">Loading...</div>;
+    return (
+      <div className="text-center text-6xl mt-50 font-semi-bold">
+        Loading...
+      </div>
+    );
   }
 
   if (error) {
@@ -36,7 +40,7 @@ const Seasons = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto mt-4 mb-20 items-center rounded-lg">
+    <div className="max-w-7xl mx-auto mt-4 mb-20 sm:m-4 items-center rounded-lg">
       <div className="max-w-7xl mx-auto mb-10 h-80 ">
         <img
           src={seasons.image}
@@ -54,7 +58,6 @@ const Seasons = () => {
           </span>
         ))}
       </p>
-      <h2 className="text-2xl font-bold mb-4">Seasons</h2>
 
       <SeasonsComponent seasons={seasons.seasons} />
 

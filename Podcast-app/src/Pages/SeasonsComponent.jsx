@@ -10,14 +10,14 @@ const Seasons = ({ seasons }) => {
   };
 
   return (
-    <div className="seasons text-xl font-medium ">
+    <div className="seasons text-xl font-medium">
       <select
-        className="px-2 py-1 text-sm font-bold border rounded-md focus:outline-none"
+        className="px-2 py-1 text-sm p-4 font-bold border rounded-md focus:outline-none"
         onChange={handleSeasonChange}
         defaultValue=""
       >
         <option value="" disabled>
-          Select a season
+          Seasons
         </option>
         {seasons.map((season) => (
           <option key={season.title} value={season.title}>

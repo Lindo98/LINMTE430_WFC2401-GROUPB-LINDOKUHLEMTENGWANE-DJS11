@@ -61,7 +61,7 @@ function HomePage() {
   );
 
   return (
-    <main className="max-w-7xl mx-auto ">
+    <main className="max-w-7xl mx-auto sm:m-4">
       <Carousel />
       <div className="max-w-7xl mx-auto mt-20 flex m-6">
         <div>
